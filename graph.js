@@ -209,6 +209,29 @@ var depthFirst = function(graph, startId){
 }
 
 
+var shortestPath = function(v1, v2, graph){
+  var queue = [[graph.getVertex(v1), 0]];
+  var visited = {v1:true};
+  var currentVertexTuple;
 
+  while(queue.length > 0){
+    currentVertexTuple = queue.pop()
+
+    if(currentVertexTuple[0].value === v2){
+      return currentVertexTuple[1];
+    }
+
+
+    for(var key in currentVertexTuple[0].edges){
+
+      if (!visited[key]){
+        queue.push([graph.getVertex(key),currentVertexTuple[1] + 1 ])
+        visited[key] = true
+      }
+    }
+  }
+
+  return 'Value does not exist';
+}
 
 
