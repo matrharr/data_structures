@@ -22,12 +22,12 @@ class HashTable
       index = self.hash(key)
 
       if self.storage[index] == nil
+        p "test"
         self.storage[index] = []
         self.storage[index].push([key, value])
         self.size += 1
       else
         bucket = self.storage[index]
-
         self.storage.map do |i|
           if i[0] == key
             i[1] = value
@@ -62,4 +62,12 @@ class HashTable
 end
 
 
+table = HashTable.new
 
+table.insert('key', 6)
+table.insert('value', 11)
+table.insert('hat', 9)
+table.insert('alligator', 12)
+table.insert('crocodile', 30)
+
+p table.storage
