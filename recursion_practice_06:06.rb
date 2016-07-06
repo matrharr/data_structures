@@ -163,6 +163,31 @@
 
 # }
 
+def merge(arr1, arr2)
+  sorted_arr = []
+
+  def recurse_arr(arr1, arr2, sorted_arr)
+
+    if arr1.empty?
+      arr2.each{|x| sorted_arr << x}
+    elsif arr2.empty?
+      arr1.each{|x| sorted_arr << x}
+    elsif arr1[0] > arr2[0]
+      sorted_arr << arr2[0]
+      recurse_arr(arr1, arr2[1..-1], sorted_arr)
+    elsif arr1[0] <= arr2[0]
+      sorted_arr << arr1[0]
+      recurse_arr(arr1[1..-1], arr2, sorted_arr)
+    end
+
+  end
+
+  recurse_arr(arr1, arr2, sorted_arr)
+  return sorted_arr
+end
+
+p merge([1,3,5,7,9], [2,4,6,8])
+
 #  9. Redo Flatten from problem 6 using the Recursion w/ Side Effects
 #  Input: Array of integers and arrays
 #  Output: Array of integers
