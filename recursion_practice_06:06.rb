@@ -142,8 +142,33 @@
 # }
 #  Example: flatten([1, [2, 3, [4]], 5, [[6]]]) => [1, 2, 3, 4, 5, 6]
 
+# def flatten(arr)
+#   answer = []
 
 
+#   def recursive_flatten(arr, answer)
+#     if arr.length < 1
+#       return
+#     else
+#       i = 0
+#       while i < arr.length
+#         if arr[i].class == Array
+#           recursive_flatten(arr[i], answer)
+#         else
+#           answer << arr[i]
+#         end
+#         i += 1
+#       end
+#     end
+
+#   end
+
+
+#   recursive_flatten(arr, answer)
+#   return answer
+# end
+
+# p flatten([1, [2, 3, [4]], 5, [[6]]])
 
 #  7. Power using Helper Method of Recursion
 #  Input: Two Integers, Base and Exponent
@@ -153,8 +178,24 @@
 # }
 #  Example: power(3, 4) => 81
 
+def power(base, exponent)
+  answer = 1
 
 
+  def recursive_power(base, exponent, answer)
+
+    if exponent < 1
+      return answer
+    else
+      answer *= base
+      recursive_power(base, (exponent-1), answer)
+    end
+  end
+
+  recursive_power(base, exponent, answer)
+end
+
+p power(3, 4)
 
 #  8. Merge two sorted array using the Helper Method of Recursion
 #  Input: 2 Sorted Arrays
@@ -163,30 +204,30 @@
 
 # }
 
-def merge(arr1, arr2)
-  sorted_arr = []
+# def merge(arr1, arr2)
+#   sorted_arr = []
 
-  def recurse_arr(arr1, arr2, sorted_arr)
+#   def recurse_arr(arr1, arr2, sorted_arr)
 
-    if arr1.empty?
-      arr2.each{|x| sorted_arr << x}
-    elsif arr2.empty?
-      arr1.each{|x| sorted_arr << x}
-    elsif arr1[0] > arr2[0]
-      sorted_arr << arr2[0]
-      recurse_arr(arr1, arr2[1..-1], sorted_arr)
-    elsif arr1[0] <= arr2[0]
-      sorted_arr << arr1[0]
-      recurse_arr(arr1[1..-1], arr2, sorted_arr)
-    end
+#     if arr1.empty?
+#       arr2.each{|x| sorted_arr << x}
+#     elsif arr2.empty?
+#       arr1.each{|x| sorted_arr << x}
+#     elsif arr1[0] > arr2[0]
+#       sorted_arr << arr2[0]
+#       recurse_arr(arr1, arr2[1..-1], sorted_arr)
+#     elsif arr1[0] <= arr2[0]
+#       sorted_arr << arr1[0]
+#       recurse_arr(arr1[1..-1], arr2, sorted_arr)
+#     end
 
-  end
+#   end
 
-  recurse_arr(arr1, arr2, sorted_arr)
-  return sorted_arr
-end
+#   recurse_arr(arr1, arr2, sorted_arr)
+#   return sorted_arr
+# end
 
-p merge([1,3,5,7,9], [2,4,6,8])
+# p merge([1,3,5,7,9], [2,4,6,8])
 
 #  9. Redo Flatten from problem 6 using the Recursion w/ Side Effects
 #  Input: Array of integers and arrays
