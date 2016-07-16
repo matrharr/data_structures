@@ -24,7 +24,7 @@ class Queue
 end
 
 
- # this is fucked up
+
 class Stack
 
   attr_accessor :size, :storage
@@ -45,14 +45,14 @@ class Stack
     if is_empty?
       puts "The stack is empty, push something first."
     else
-      @storage.pop
       @size -= 1
+      @storage.pop
     end
   end
 
   def push(val)
-    @storage.push(val)
     @size += 1
+    @storage.push(val)
   end
 
   def peek
@@ -66,8 +66,8 @@ end
 class QueueofStacks
 
   def initialize
-    @stack1 = Array.new
-    @stack2 = Array.new
+    @stack1 = Stack.new
+    @stack2 = Stack.new
   end
 
   def enqueue(val)
@@ -82,7 +82,7 @@ class QueueofStacks
 
   def dequeue
     until @stack1.size == 1
-      @stack2 << @stack1.pop
+      @stack2.push(@stack1.pop)
     end
     @stack1.pop
   end
@@ -97,6 +97,5 @@ q.enqueue(2)
 q.enqueue(3)
 
 p q.dequeue
-
-
+p q
 
