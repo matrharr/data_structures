@@ -1,3 +1,4 @@
+# unstable sort
 def quickSort(input)
   if input.length <= 1
     return input
