@@ -46,9 +46,8 @@ class LinkedList
       else
         current_node = current_node.next
       end
-      puts 'search val not found'
     end
-
+      puts 'search val not found'
   end
 
   def search(val)
@@ -84,6 +83,23 @@ class LinkedList
     puts "node not found"
   end
 
+  def kth_from_last(k)
+    if k > @size
+      return "The list is not that large"
+    end
+    p1 = @head
+    p2 = @head
+    counter = k - 1
+    counter.times{p2 = p2.next}
+
+    until p2.next == nil
+      p1 = p1.next
+      p2 = p2.next
+    end
+
+    return p1
+  end
+
 end
 
 
@@ -96,4 +112,4 @@ a.append(4)
 
 a.insert(3,2)
 
-p a
+p a.kth_from_last(40)
