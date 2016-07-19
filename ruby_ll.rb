@@ -54,7 +54,7 @@ class LinkedList
     current_node = @head
     until current_node == nil
       if current_node.val == val
-        return true
+        return current_node
       end
       current_node = current_node.next
     end
@@ -100,6 +100,11 @@ class LinkedList
     return p1
   end
 
+  def erase_node(e_node)
+    e_node.val = e_node.next.val
+    e_node.next = e_node.next.next
+  end
+
 end
 
 
@@ -112,4 +117,7 @@ a.append(4)
 
 a.insert(3,2)
 
-p a.kth_from_last(40)
+# p a.kth_from_last(40)
+a.erase_node(a.search(3))
+
+p a
