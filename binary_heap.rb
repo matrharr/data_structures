@@ -1,40 +1,75 @@
 class MinHeap
 
   def initialize
-    @storage = [nil]
-  end
-
-  def peak
-    @storage[1]
-  end
-
-  def size
-    @storage.length - 1
+    @storage = []
   end
 
   def insert(value)
     @storage << value
-    @storage.bubble_up(@storage.size)
+    bubble_up
   end
 
-  def bubble_up(index)
-
-  end
-
-  def swap(index_a, index_b)
-    temp = @storage[index_a]
-    @storage[index_a] = @storage[index_b]
-    @storage[index_b] = temp
-  end
-
-  def pop
-    #swap first and last element
-    self.swap(1, self.size)
+  def remove
+    if @storage.size == 0
+      return nil
+    end
+    swap(0, -1)
     result = @storage.pop
-    self.bubble_down(1)
+    bubble_down
+    return result
   end
 
-  def bubble_down(index)
+  def peak
+    @storage[0]
+  end
+
+  private
+
+  def swap(i, j)
+    @storage[i], @storage[j] = @storage[j], @storage[i]
+  end
+
+  def get_parent(child)
+    return (child - 1)/2
+  end
+
+  def get_child(parent)
+    child_one = 2 * parent + 1
+    child_two = 2 * parent + 2
+    if child_one == @storage.size - 1
+      return child_one
+    end
+    if child_one > @storage.size - 1
+      return nil
+    end
+    return condition(child_one, child_two) ? child_one : child_two
+  end
+
+
+  def bubble_up
+    child = @storage.size - 1
+    parent = get_parent(child)
+    while child > 0 && !condition(parent, child)
+      swap(parent, child)
+      child = parent
+      parent = get_parent(child)
+    end
+  end
+
+  def bubble_down
+    parent = 0
+    child = get_child(parent)
+    while child && !condition(parent, child)
+      swap(parent, child)
+      parent = child
+      child = get_child(parent)
+    end
+  end
+
+  def condition(i, j)
+    return @storage[i] < @storage[j]
   end
 
 end
+
+

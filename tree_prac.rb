@@ -64,6 +64,46 @@ class Tree
     return traverse(@root, answer)
   end
 
+
+  def balanced_check
+    @max_depth = 0
+    @counter = 0
+    @answer = true
+
+    def traverse(current_node)
+
+      if current_node == nil
+
+        p @counter
+        if @counter > @max_depth
+          @max_depth = @counter
+          @counter = 1
+        end
+
+        if (@max_depth - @counter).abs > 1
+          @answer = false
+        end
+
+        return
+      else
+        @counter += 1
+      end
+
+      # if current_node.left_child || current_node.right_child
+      #   @counter += 1
+      # end
+
+
+      traverse(current_node.left_child)
+      traverse(current_node.right_child)
+
+
+    end
+
+    traverse(@root)
+    return @answer
+  end
+
 end
 
 
@@ -73,4 +113,10 @@ a.insert_with_breadth(5)
 a.insert_with_breadth(4)
 a.insert_with_breadth(3)
 a.insert_with_breadth(2)
-p a.depth_search(0)
+
+
+
+# a.root.left_child.left_child.left_child = Node.new(10)
+a
+p a.balanced_check
+
