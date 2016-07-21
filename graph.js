@@ -23,7 +23,7 @@ Graph.prototype.getVertex = function(id){
   if(this.vertices[id] !== undefined){
     return this.vertices[id];
   } else {
-    cosole.log("ID does not exist");
+    console.log("ID does not exist");
   }
 }
 
