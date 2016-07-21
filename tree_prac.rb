@@ -67,40 +67,29 @@ class Tree
 
   def balanced_check
     @max_depth = 0
-    @counter = 0
+    counter = 0
     @answer = true
 
-    def traverse(current_node)
-
-      if current_node == nil
-
-        p @counter
-        if @counter > @max_depth
-          @max_depth = @counter
-          @counter = 1
-        end
-
-        if (@max_depth - @counter).abs > 1
-          @answer = false
-        end
-
-        return
+    def traverse(current_node, counter)
+      if current_node.left_child && current_node.right_child
+        counter += 1
+        traverse(current_node.left_child, counter)
+        traverse(current_node.right_child, counter)
       else
-        @counter += 1
+        if @max_depth == 0
+          @max_depth = counter
+        else
+          if (@max_depth - counter).abs > 1
+            return false
+          end
+          if counter > @max_depth
+            @max_depth = counter
+            counter = 0
+          end
+        end
       end
-
-      # if current_node.left_child || current_node.right_child
-      #   @counter += 1
-      # end
-
-
-      traverse(current_node.left_child)
-      traverse(current_node.right_child)
-
-
     end
-
-    traverse(@root)
+    traverse(@root, counter)
     return @answer
   end
 
@@ -116,7 +105,7 @@ a.insert_with_breadth(2)
 
 
 
-# a.root.left_child.left_child.left_child = Node.new(10)
+a.root.left_child.left_child.left_child = Node.new(10)
 a
 p a.balanced_check
 

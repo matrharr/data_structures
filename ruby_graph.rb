@@ -72,6 +72,26 @@ class Graph
       return 'vertex does not exist'
     end
   end
+
+  def shortest_path(id1, id2)
+    @answer_array = []
+    @id2 = id2
+
+    def depth_traverse(current_v, str_path)
+      if current_v.value == @id2
+        str_path += current_v.value
+        @answer_array << str_path
+        return
+      else
+        # str_path += current_v.value
+        current_v.edges.each{ |edge, value| depth_traverse(get_vertex(edge), str_path + current_v.value)}
+      end
+
+    end
+    depth_traverse(get_vertex(id1), '')
+    @answer_array
+  end
+
 end
 
 
