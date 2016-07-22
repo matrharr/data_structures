@@ -14,6 +14,4 @@ def reverse_string(str)
   str
 end
 
-# take last letter, prepend
-
-p reverse_string('allthefis')
+p reverse_string('allthefish')
