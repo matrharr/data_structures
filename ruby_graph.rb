@@ -105,3 +105,11 @@ g.remove_vertex(5)
 
 g.remove_vertex(1)
 p g
+
+# g.vertices['A'].edges['B'] = true;
+# g.vertices['A'].edges['C'] = true;
+# g.vertices['B'].edges['D'] = true;
+# g.vertices['D'].edges['C'] = true;
+# g.vertices['C'].edges['E'] = true;
+# g.vertices['D'].edges['E'] = true;
+# g.vertices['E'].edges['F'] = true;
