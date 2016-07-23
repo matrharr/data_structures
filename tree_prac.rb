@@ -47,21 +47,21 @@ class Tree
     end
   end
 
-  def depth_search(val)
-    @value = val
-    answer = []
+  def depth_search
+    @collection = []
 
-    def traverse(current, arr)
-      return false if current == nil
-      return true if current.value == @value
-      p arr << current.value # placement of this push determines pre/in/post orders. above/inbetween/after recursive cases
-      traverse(current.left_child, arr)
-      traverse(current.right_child, arr)
+    def pre_order(val)
+      if val == nil
+        return
+      else
+        @collection << val.value
+        pre_order(val.left_child)
+        pre_order(val.right_child)
+      end
     end
 
-
-
-    return traverse(@root, answer)
+    pre_order(@root)
+    @collection
   end
 
 
@@ -104,8 +104,8 @@ a.insert_with_breadth(3)
 a.insert_with_breadth(2)
 
 
-
-a.root.left_child.left_child.left_child = Node.new(10)
-a
-p a.balanced_check
+p a.depth_search
+# a.root.left_child.left_child.left_child = Node.new(10)
+# a
+# p a.balanced_check
 
